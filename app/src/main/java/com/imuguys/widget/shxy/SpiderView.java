@@ -101,11 +101,12 @@ public class SpiderView extends View {
       percentArray[i] = 0.15f * (i + 1);
     }
     int level = 5;
-    int[] spiderColorArray = new int[level - 1];
+    int[] spiderColorArray = new int[level];
     spiderColorArray[0] = Color.parseColor("#80DEEA");
     spiderColorArray[1] = Color.parseColor("#26C6DA");
     spiderColorArray[2] = Color.parseColor("#00ACC1");
     spiderColorArray[3] = Color.parseColor("#00838F");
+    spiderColorArray[4] = Color.parseColor("#006064");
     setPointCount(6, percentArray);
     setLevel(level, spiderColorArray);
     setSpiderLineColor(Color.WHITE);
@@ -179,7 +180,7 @@ public class SpiderView extends View {
       currentRadius -= mRadius / mLevel;
       mPath.close();
       canvas.drawPath(mPath, mSpiderPaint);
-      if (mSpiderAreaColors != null && i != mLevel - 1) {
+      if (mSpiderAreaColors != null) {
         mSpiderAreaPaint.setColor(mSpiderAreaColors[i]);
         canvas.drawPath(mPath, mSpiderAreaPaint);
       }
@@ -330,7 +331,7 @@ public class SpiderView extends View {
   public void setLevel(@IntRange(from = 1) int level, @Nullable int[] spiderAreaColors) {
     Preconditions.checkArgument(level >= 1);
     if (spiderAreaColors != null) {
-      Preconditions.checkState(spiderAreaColors.length == level - 1);
+      Preconditions.checkState(spiderAreaColors.length == level);
     }
     mLevel = level;
     mSpiderAreaColors = spiderAreaColors;

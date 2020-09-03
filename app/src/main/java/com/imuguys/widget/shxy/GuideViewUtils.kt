@@ -18,9 +18,9 @@ object GuideViewUtils {
       val position = IntArray(2)
       val width: Int = targetView.width
       val height: Int = targetView.height
-      targetView.getLocationInWindow(position)
-      targetViewInformation.setCenterXInWindow(position[0] + width / 2f)
-      targetViewInformation.setCenterYInWindow(position[1] + height / 2f)
+      targetView.getLocationOnScreen(position)
+      targetViewInformation.setCenterXInScreen(position[0] + width / 2f)
+      targetViewInformation.setCenterYInScreen(position[1] + height / 2f)
       targetViewInformation.setRadius(width.coerceAtLeast(height) / 2f + 10)
       guideView
           .setTargetViewInformationAndSimpleText(targetViewInformation, charSequence)

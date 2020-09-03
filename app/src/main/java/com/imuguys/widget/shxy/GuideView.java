@@ -218,8 +218,11 @@ public class GuideView extends FrameLayout {
    * 修正TargetViewInformationPosition中的x,y
    */
   private void fixTargetViewInformationPosition() {
+    if (mTargetViewInformation == null) {
+      return;
+    }
     int[] location = new int[2];
-    getLocationInWindow(location);
+    getLocationOnScreen(location);
     mTargetViewInformation.fixPosition(location);
   }
 
@@ -251,20 +254,20 @@ public class GuideView extends FrameLayout {
    * 目标View信息
    */
   public static final class TargetViewInformation {
-    private float mCenterXInWindow; // 中心点x在window中的位置
-    private float mCenterYInWindow; // 中心点y在window中的位置
+    private float mCenterXInScreen; // 中心点x在screen中的位置
+    private float mCenterYInScreen; // 中心点y在screen中的位置
     private float mRadius; // 半径，一般取长、宽中更大的值
 
     private float mCenterX; // 中心点x在Parent中的位置
     private float mCenterY; // 中心点y在Parent中的位置
     private int mGravity = Gravity.TOP; // 引导文字方向，目前只支持向上
 
-    public void setCenterXInWindow(float centerXInWindow) {
-      mCenterXInWindow = centerXInWindow;
+    public void setCenterXInScreen(float centerXInScreen) {
+      mCenterXInScreen = centerXInScreen;
     }
 
-    public void setCenterYInWindow(float centerYInWindow) {
-      mCenterYInWindow = centerYInWindow;
+    public void setCenterYInScreen(float centerYInScreen) {
+      mCenterYInScreen = centerYInScreen;
     }
 
     public void setRadius(float radius) {
@@ -274,18 +277,18 @@ public class GuideView extends FrameLayout {
     /**
      * 根据parent在window中的位置计算targetView在parent中的位置
      *
-     * @param location parent在window中的位置
+     * @param location parent在screen中的位置
      */
     private void fixPosition(int[] location) {
-      mCenterX = mCenterXInWindow - location[0];
-      mCenterY = mCenterYInWindow - location[1];
+      mCenterX = mCenterXInScreen - location[0];
+      mCenterY = mCenterYInScreen - location[1];
     }
 
     @Override
     public String toString() {
       return "TargetViewInformation{" +
-          "mCenterXInWindow=" + mCenterXInWindow +
-          ", mCenterYInWindow=" + mCenterYInWindow +
+          "mCenterXInWindow=" + mCenterXInScreen +
+          ", mCenterYInWindow=" + mCenterYInScreen +
           ", mRadius=" + mRadius +
           ", mCenterX=" + mCenterX +
           ", mCenterY=" + mCenterY +

@@ -41,6 +41,10 @@ dependencies {
     implementation 'com.google.guava:guava:24.1-jre'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "android.arch.work:work-runtime:1.0.1"
+    configurations {
+        all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+    }
 
 }
 repositories {

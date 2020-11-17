@@ -16,6 +16,18 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+
+    <activity-alias
+      android:enabled="false"
+      android:icon="@drawable/imu_guys_logo"
+      android:name=".NewStyleMainActivity"
+      android:targetActivity=".MainActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity-alias>
   </application>
 
 </manifest>
